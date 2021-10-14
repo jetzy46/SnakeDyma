@@ -169,3 +169,37 @@ import "./style.css";
 Le CSS se mettra à jour à chaque sauvegarde, comme le JS.
 
 Pour le HTML, il faudra refaire un _build_ à chaque fois
+
+## Gestion des polyfills avec Webpack
+
+Les polyfills sont des bouts de codes utilisés pour fournir des fonctionnalités récentes sur d'anciens navigateurs qui ne les supportent pas nativement, avec l'aide de Webpack.
+
+Pour cela, il faut installer 2 nouveaux paquets npm:
+
+```terminal
+npm i core-js@3 regenerator-runtime
+```
+
+Il faudra aussi maudifier le fichier *babel.config.js* :
+
+```javascript
+module.exports = {
+  presets: [
+    [
+      "@babel/preset-env",
+      {
+        useBuiltIns: "usage",
+        debug: true,
+        corejs: 3,
+        targets: "> 0.25%, not dead",
+      },
+    ],
+  ],
+};
+```
+
+Les *targets* sont les navigateurs que l'on veut supporter : 
+
+    le *>0.25%* représente "un navigateur qui à plus de 0.25% de part d'utilisation dans le monde"
+
+    le *not dead* représente " qui est toujours maintenue / n'est pas abandonné "
