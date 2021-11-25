@@ -3,6 +3,8 @@ import "./style.css";
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
 
+//VARIABLES __________
+
 // on défini le nombre de colonne et rangée dans le canvas
 const grid = 40;
 // on initialise la position du snake
@@ -16,6 +18,11 @@ const apple = [5, 5];
 
 // on initialise la direction du snake
 let direction = "n";
+
+// on définit la vitesse du snake
+let speed = 300;
+
+//DESSINS __________
 
 // on dessine la map
 const drawMap = () => {
@@ -45,6 +52,21 @@ const drawApple = () => {
   ctx.fill();
   ctx.closePath();
 };
+
+// CONDITIONS DE DEFAITES
+
+const gameOver = () => {
+  if (
+    snake[0][0] > 19 ||
+    snake[0][0] < 0 ||
+    snake[0][1] > 19 ||
+    snake[0][1] < 0
+  ) {
+    return true;
+  }
+};
+
+//CONTROLES __________
 
 // on ecoute les touches
 window.addEventListener("keydown", (e) => {
@@ -90,16 +112,20 @@ const updateSnakePosition = () => {
   }
   snake.unshift(head);
   snake.pop();
+  return gameOver();
 };
 
 const move = () => {
-  updateSnakePosition();
-  drawMap();
-  drawSnake();
-  drawApple();
-  // setTimeout(() => {
-  //   requestAnimationFrame(move);
-  // }, 200);
+  if (!updateSnakePosition()) {
+    drawMap();
+    drawSnake();
+    drawApple();
+    setTimeout(() => {
+      requestAnimationFrame(move);
+    }, speed);
+  } else {
+    alert("Perdu ! cheh");
+  }
 };
 
 requestAnimationFrame(move);
