@@ -15,7 +15,7 @@ const snake = [
 const apple = [5, 5];
 
 // on initialise la direction du snake
-const direction = "w";
+let direction = "n";
 
 // on dessine la map
 const drawMap = () => {
@@ -35,10 +35,38 @@ const drawSnake = () => {
 const drawApple = () => {
   ctx.beginPath();
   ctx.fillStyle = "#EA2027";
-  ctx.arc(apple[0] * grid, apple[1] * grid, 800 / grid, 0, Math.PI * 2);
+  ctx.arc(
+    (apple[0] + 0.5) * grid,
+    (apple[1] - 0.5) * grid,
+    (800 / grid) * 0.5,
+    0,
+    Math.PI * 2
+  );
   ctx.fill();
   ctx.closePath();
 };
+
+// on ecoute les touches
+window.addEventListener("keydown", (e) => {
+  switch (e.key) {
+    case "z": {
+      direction = "n";
+      break;
+    }
+    case "q": {
+      direction = "w";
+      break;
+    }
+    case "s": {
+      direction = "s";
+      break;
+    }
+    case "d": {
+      direction = "e";
+      break;
+    }
+  }
+});
 
 const updateSnakePosition = () => {
   let head;
@@ -69,9 +97,9 @@ const move = () => {
   drawMap();
   drawSnake();
   drawApple();
-  setTimeout(() => {
-    requestAnimationFrame(move);
-  }, 500);
+  // setTimeout(() => {
+  //   requestAnimationFrame(move);
+  // }, 200);
 };
 
 requestAnimationFrame(move);
