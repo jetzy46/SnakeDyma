@@ -63,7 +63,15 @@ const gameOver = () => {
     snake[0][1] < 0
   ) {
     return true;
+  } else {
+    const [head, ...body] = snake;
+    for (let bodyElem of body) {
+      if (bodyElem[0] === head[0] && bodyElem[1] === head[1]) {
+        return true;
+      }
+    }
   }
+  return false;
 };
 
 //CONTROLES __________
