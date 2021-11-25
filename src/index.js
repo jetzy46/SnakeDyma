@@ -14,13 +14,15 @@ const snake = [
   [9, 11],
 ];
 // on défini la pomme
-const apple = [5, 5];
+let apple = [5, 5];
 
 // on initialise la direction du snake
 let direction = "n";
 
 // on définit la vitesse du snake
 let speed = 300;
+
+let score = 0;
 
 //DESSINS __________
 
@@ -44,13 +46,21 @@ const drawApple = () => {
   ctx.fillStyle = "#EA2027";
   ctx.arc(
     (apple[0] + 0.5) * grid,
-    (apple[1] - 0.5) * grid,
+    (apple[1] + 0.5) * grid,
     (800 / grid) * 0.5,
     0,
     Math.PI * 2
   );
   ctx.fill();
   ctx.closePath();
+};
+
+const drawScore = () => {
+  ctx.fillStyle = "rgba(255, 255, 255, 0.25)";
+  ctx.font = "200px sans-serif";
+  ctx.textBaseline = "middle";
+  ctx.textAlign = "center";
+  ctx.fillText(score, grid * 10, grid * 10);
 };
 
 // CONDITIONS DE DEFAITES
@@ -98,6 +108,19 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
+const generateApple = () => {
+  const [x, y] = [
+    Math.trunc(Math.random() * 19),
+    Math.trunc(Math.random() * 19),
+  ];
+  apple = [x, y];
+  for (let body of snake) {
+    if (body[0] === x && body[1] === y) {
+      return generateApple();
+    }
+  }
+};
+
 const updateSnakePosition = () => {
   let head;
   switch (direction) {
@@ -119,7 +142,13 @@ const updateSnakePosition = () => {
     }
   }
   snake.unshift(head);
-  snake.pop();
+  // on vérifie si on mange la pomme
+  if (head[0] === apple[0] && head[1] === apple[1]) {
+    generateApple();
+    score++;
+  } else {
+    snake.pop();
+  }
   return gameOver();
 };
 
@@ -128,11 +157,13 @@ const move = () => {
     drawMap();
     drawSnake();
     drawApple();
+    drawScore();
     setTimeout(() => {
       requestAnimationFrame(move);
     }, speed);
   } else {
-    alert("Perdu ! cheh");
+    alert("perdu");
+    score = 0;
   }
 };
 
