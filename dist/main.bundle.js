@@ -21,7 +21,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "html {\n  font-family: sans-serif;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  background-color: #1a1a1a;\n}\n\n.mainContainer {\n  margin: 0;\n  padding: 0;\n  width: 100vw;\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n\n.mainTitle {\n  margin: 0;\n  padding: 0;\n  font-size: 5em;\n  color: white;\n}\n\n.subTitle {\n  margin: 0;\n  padding: 0;\n  margin-top: 2vh;\n  font-size: 4em;\n  color: white;\n}\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;AACzB;;AAEA;EACE,SAAS;EACT,UAAU;EACV,yBAAyB;AAC3B;;AAEA;EACE,SAAS;EACT,UAAU;EACV,YAAY;EACZ,aAAa;EACb,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,sBAAsB;AACxB;;AAEA;EACE,SAAS;EACT,UAAU;EACV,cAAc;EACd,YAAY;AACd;;AAEA;EACE,SAAS;EACT,UAAU;EACV,eAAe;EACf,cAAc;EACd,YAAY;AACd","sourcesContent":["html {\n  font-family: sans-serif;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  background-color: #1a1a1a;\n}\n\n.mainContainer {\n  margin: 0;\n  padding: 0;\n  width: 100vw;\n  height: 100vh;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n}\n\n.mainTitle {\n  margin: 0;\n  padding: 0;\n  font-size: 5em;\n  color: white;\n}\n\n.subTitle {\n  margin: 0;\n  padding: 0;\n  margin-top: 2vh;\n  font-size: 4em;\n  color: white;\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, "html {\n  font-family: sans-serif;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  height: 100vh;\n  width: 100vw;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  align-items: center;\n  background: white;\n}\n\ncanvas {\n  border: 1px solid black;\n}\n", "",{"version":3,"sources":["webpack://./src/style.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;AACzB;;AAEA;EACE,SAAS;EACT,UAAU;EACV,aAAa;EACb,YAAY;EACZ,aAAa;EACb,eAAe;EACf,uBAAuB;EACvB,mBAAmB;EACnB,iBAAiB;AACnB;;AAEA;EACE,uBAAuB;AACzB","sourcesContent":["html {\n  font-family: sans-serif;\n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  height: 100vh;\n  width: 100vw;\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  align-items: center;\n  background: white;\n}\n\ncanvas {\n  border: 1px solid black;\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -607,6 +607,8 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _style_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./style.css */ "./src/style.css");
 
+var canvas = document.querySelector("canvas");
+var ctx = canvas.getContext("2d");
 })();
 
 /******/ })()
